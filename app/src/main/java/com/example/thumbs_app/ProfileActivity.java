@@ -42,13 +42,11 @@ public class ProfileActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch (item.getItemId()) {
-
             case R.id.LogOut:
                 Toast.makeText(this, "Log Out", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
-
                 break;
         }
 
