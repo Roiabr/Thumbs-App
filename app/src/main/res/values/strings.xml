@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">Thumbs-App</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_profile_main">ProfileMain</string>
+    <string name="tab_text_1">נהג</string>
+    <string name="tab_text_2">נוסע</string>
+
+    <string-array name="location">
+        <item>פתח תקווה</item>
+        <item> אריאל</item>
+        <item>תל אביב</item>
+        <item>ירושלים</item>
+        <item>ראשון לציון</item>
+        <item>אשדוד</item>
+        <item>אשקלון</item>
+    </string-array>
+    <string-array name="days">
+        <item>ראשון</item>
+        <item> שני</item>
+        <item>שלישי</item>
+        <item>רביעי</item>
+        <item>חמישי</item>
+        <item>שישי</item>
+        <item>שבת</item>
+    </string-array>
 </resources>

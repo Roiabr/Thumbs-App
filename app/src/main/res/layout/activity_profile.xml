@@ -14,7 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width ="match_parent"
-            android:layout_height = "?attr/actionBarSize"
+            android:layout_height = "wrap_content"
             android:background ="#789"
             app:title="@string/app_name"
             app:titleTextColor = "#fff"
@@ -22,28 +22,32 @@
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolTab"
             android:layout_width ="match_parent"
-            android:layout_height = "?attr/actionBarSize"
+            android:layout_height = "wrap_content"
             android:background ="#789"
-            app:title="@string/app_name"
             app:titleTextColor = "#fff"
-            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_collapseMode="pin"
             >
 
             <com.google.android.material.tabs.TabLayout
+                android:id="@+id/TabLyaout"
                 android:layout_width ="match_parent"
                 android:layout_height ="wrap_content"
-                app:tabTextColor="#fff">
+                app:tabTextColor="#fff"
+                app:tabSelectedTextColor="#000">
                 <com.google.android.material.tabs.TabItem
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"
-                    android:text="נהג">
+                    android:id="@+id/tabDriver"
+                    android:text="Driver">
 
                 </com.google.android.material.tabs.TabItem>
                 <com.google.android.material.tabs.TabItem
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"
-                    android:text="טרמפיסט">
+                    android:id="@+id/tabTremp"
+                    android:text="Looking">
 
                 </com.google.android.material.tabs.TabItem>
 
@@ -55,7 +59,11 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
+    <Button
+        android:id="@+id/suggBtn"
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:text="הצע טרמפ" />
 
 
 </LinearLayout>
