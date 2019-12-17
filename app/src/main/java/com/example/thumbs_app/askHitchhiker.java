@@ -1,5 +1,7 @@
 package com.example.thumbs_app;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,17 +15,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 
-
-public class askDriver extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
-
+public class askHitchhiker extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     EditText name;
     EditText phone;
@@ -42,9 +39,9 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ask_driver);
+        setContentView(R.layout.activity_ask_hitchhiker);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("makeDrive");
+        databaseReference = FirebaseDatabase.getInstance().getReference("MakeHitchhiker");
 
         name = findViewById(R.id.editTextDriver);
         phone = findViewById(R.id.phoneText);
@@ -76,7 +73,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         Time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(askDriver.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(askHitchhiker.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
 
@@ -97,7 +94,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         Time2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TimePickerDialog timePickerDialog = new TimePickerDialog(askDriver.this, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(askHitchhiker.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int hourOfDay, int minutes) {
                         String amPm;
@@ -116,7 +113,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addDrive();
+                addHitchhiker();
             }
         });
 
@@ -134,7 +131,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
-    public void addDrive(){
+    public void addHitchhiker(){
         String Name = name.getText().toString().trim();
         String TimeStart = Time2.getText().toString().trim();
         String TimeEnd = Time.getText().toString().trim();
@@ -143,9 +140,9 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
 
         if(!TextUtils.isEmpty(Name)){
             String id =  databaseReference.push().getKey();
-            MakeDrive makeDrive = new MakeDrive(id,Name,TimeStart,TimeEnd,Location,day);
-            databaseReference.child(id).setValue(makeDrive);
-            Toast.makeText(this, "Drive Added", Toast.LENGTH_SHORT).show();
+            MakeHitchhiker makeHitchhiker = new MakeHitchhiker(id,Name,TimeStart,TimeEnd,Location,day);
+            databaseReference.child(id).setValue(makeHitchhiker);
+            Toast.makeText(this, "Hitchhiker Added", Toast.LENGTH_SHORT).show();
         }
         else
             Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();

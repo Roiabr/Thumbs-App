@@ -1,7 +1,6 @@
 package com.example.thumbs_app;
 
-public class MakeDrive {
-
+public class MakeHitchhiker {
     String id;
     String Name;
     String TimeStart;
@@ -9,7 +8,7 @@ public class MakeDrive {
     String Location;
     String day;
 
-    public MakeDrive(String id1,String name, String timeStart, String timeEnd, String location, String day) {
+    public MakeHitchhiker(String id1, String name, String timeStart, String timeEnd, String location, String day) {
         id = id1;
         Name = name;
         TimeStart = timeStart;

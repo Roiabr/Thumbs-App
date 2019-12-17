@@ -1,11 +1,15 @@
 package com.example.thumbs_app;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,8 +24,9 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     ProgressBar progressBar;
-    EditText editTextEmail, editTextPassword , mobilePhone,userName;
-
+    EditText editTextEmail, editTextPassword , mobilePhone,userName,editTextCar;
+    Switch aSwitch;
+    ImageView image;
     private FirebaseAuth mAuth;
 
     @Override
@@ -31,9 +36,24 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextCar = (EditText) findViewById(R.id.editTextCar);
         mobilePhone = (EditText) findViewById(R.id.mobphone);
         userName = (EditText) findViewById(R.id.userName);
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        editTextCar.setVisibility(View.INVISIBLE);
+        aSwitch = (Switch) findViewById(R.id.switch1);
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
+                    editTextCar.setVisibility(View.VISIBLE);
+
+                }
+                else
+                    editTextCar.setVisibility(View.INVISIBLE);
+
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
 

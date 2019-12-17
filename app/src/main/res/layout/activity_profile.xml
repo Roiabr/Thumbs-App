@@ -62,8 +62,14 @@
     <Button
         android:id="@+id/suggBtn"
         android:layout_width="match_parent"
-        android:layout_height="136dp"
+        android:layout_height="67dp"
         android:text="הצע טרמפ" />
+
+    <Button
+        android:id="@+id/askBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="בקש טרמפ" />
 
 
 </LinearLayout>

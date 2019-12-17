@@ -4,7 +4,6 @@ package com.example.thumbs_app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +26,7 @@ public class ProfileActivity extends AppCompatActivity {
     ViewPager viewPager;
     TabLayout layout;
 
-    Button btn;
+    Button btn,btn1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +36,7 @@ public class ProfileActivity extends AppCompatActivity {
        toolTab = (Toolbar) findViewById(R.id.toolTab);
        layout = (TabLayout) findViewById(R.id.TabLyaout);
        btn = (Button) findViewById(R.id.suggBtn);
+       btn1 = (Button) findViewById(R.id.askBtn);
        setSupportActionBar(toolbar);
        toolbar.inflateMenu(R.menu.main_menu);
 
@@ -47,6 +47,13 @@ public class ProfileActivity extends AppCompatActivity {
                startActivity(new Intent(ProfileActivity.this,askDriver.class));
            }
        });
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,askHitchhiker.class));
+            }
+        });
     }
 
     @Override
