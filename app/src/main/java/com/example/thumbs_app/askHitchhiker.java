@@ -41,7 +41,7 @@ public class askHitchhiker extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask_hitchhiker);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("MakeHitchhiker");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Hitchhiker");
 
         name = findViewById(R.id.editTextDriver);
         phone = findViewById(R.id.phoneText);
@@ -140,8 +140,8 @@ public class askHitchhiker extends AppCompatActivity implements AdapterView.OnIt
 
         if(!TextUtils.isEmpty(Name)){
             String id =  databaseReference.push().getKey();
-            MakeHitchhiker makeHitchhiker = new MakeHitchhiker(id,Name,TimeStart,TimeEnd,Location,day);
-            databaseReference.child(id).setValue(makeHitchhiker);
+            Tremp hitchhiker = new Tremp(id,Name,TimeStart,TimeEnd,Location,day);
+            databaseReference.child(id).setValue(hitchhiker);
             Toast.makeText(this, "Hitchhiker Added", Toast.LENGTH_SHORT).show();
         }
         else

@@ -44,7 +44,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask_driver);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("makeDrive");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Driver");
 
         name = findViewById(R.id.editTextDriver);
         phone = findViewById(R.id.phoneText);
@@ -143,8 +143,8 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
 
         if(!TextUtils.isEmpty(Name)){
             String id =  databaseReference.push().getKey();
-            MakeDrive makeDrive = new MakeDrive(id,Name,TimeStart,TimeEnd,Location,day);
-            databaseReference.child(id).setValue(makeDrive);
+            Tremp drive = new Tremp(id,Name,TimeStart,TimeEnd,Location,day);
+            databaseReference.child(id).setValue(drive);
             Toast.makeText(this, "Drive Added", Toast.LENGTH_SHORT).show();
         }
         else

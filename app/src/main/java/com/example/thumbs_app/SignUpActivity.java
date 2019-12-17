@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,12 +30,16 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     Switch aSwitch;
     ImageView image;
     private FirebaseAuth mAuth;
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
+
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users");
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextCar = (EditText) findViewById(R.id.editTextCar);
@@ -62,8 +68,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void registerUser() {
-        String email = editTextEmail.getText().toString().trim();
-        String password = editTextPassword.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
+        final String phone = mobilePhone.getText().toString().trim();
+        final String car = editTextCar.getText().toString().trim();
 
         if (email.isEmpty()) {
             editTextEmail.setError("Email is required");
@@ -96,6 +104,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
+                    String id =  databaseReference.push().getKey();
+                    Users users = new Users(id,email,password,phone,car);
+                    databaseReference.child(id).setValue(users);
                     finish();
                     startActivity(new Intent(SignUpActivity.this, ProfileActivity.class));
                 } else {
