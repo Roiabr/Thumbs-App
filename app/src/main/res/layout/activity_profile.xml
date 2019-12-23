@@ -59,17 +59,39 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <Button
-        android:id="@+id/suggBtn"
-        android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:text="הצע טרמפ" />
+<!--    <Button-->
+<!--        android:id="@+id/suggBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="67dp"-->
+<!--        android:text="הצע טרמפ" />-->
 
-    <Button
-        android:id="@+id/askBtn"
+<!--    <Button-->
+<!--        android:id="@+id/askBtn"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:text="בקש טרמפ" />-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:clickable="true"
+        android:layout_gravity="right|bottom"
+        app:srcCompat="@drawable/ic_add_black_24dp"
+        app:elevation="4dp" />
+
+    <ListView
+        android:id="@+id/listViewTremp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="בקש טרמפ" />
+        android:layout_height="match_parent">
+
+
+    </ListView>
+
 
 
 </LinearLayout>

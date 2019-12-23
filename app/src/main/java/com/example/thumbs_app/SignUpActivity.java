@@ -69,6 +69,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void registerUser() {
         final String email = editTextEmail.getText().toString().trim();
+        final String name = userName.getText().toString().trim();
         final String password = editTextPassword.getText().toString().trim();
         final String phone = mobilePhone.getText().toString().trim();
         final String car = editTextCar.getText().toString().trim();
@@ -105,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     String id =  databaseReference.push().getKey();
-                    Users users = new Users(id,email,password,phone,car);
+                    Users users = new Users(id,name,email,password,phone,car);
                     databaseReference.child(id).setValue(users);
                     finish();
                     startActivity(new Intent(SignUpActivity.this, ProfileActivity.class));

@@ -7,51 +7,104 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileActivity extends AppCompatActivity {
 
-
+    DatabaseReference databaseList;
     Toolbar toolbar,toolTab;
     ViewPager viewPager;
     TabLayout layout;
-
+    ListView listView;
     Button btn,btn1;
+    FloatingActionButton add;
+    List<Tremp> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-       toolbar = (Toolbar) findViewById(R.id.toolbar);
-       toolTab = (Toolbar) findViewById(R.id.toolTab);
-       layout = (TabLayout) findViewById(R.id.TabLyaout);
-       btn = (Button) findViewById(R.id.suggBtn);
-       btn1 = (Button) findViewById(R.id.askBtn);
-       setSupportActionBar(toolbar);
-       toolbar.inflateMenu(R.menu.main_menu);
+        databaseList = FirebaseDatabase.getInstance().getReference("Driver");
+
+        list = new ArrayList<>();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolTab = (Toolbar) findViewById(R.id.toolTab);
+        layout = (TabLayout) findViewById(R.id.TabLyaout);
+        //btn = (Button) findViewById(R.id.suggBtn);
+        //btn1 = (Button) findViewById(R.id.askBtn);
+        setSupportActionBar(toolbar);
+        toolbar.inflateMenu(R.menu.main_menu);
+
+        add = (FloatingActionButton) findViewById(R.id.floatingAdd);
+
+        listView = (ListView) findViewById(R.id.listViewTremp);
 
 
-       btn.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-               startActivity(new Intent(ProfileActivity.this,askDriver.class));
-           }
-       });
 
-        btn1.setOnClickListener(new View.OnClickListener() {
+//       btn.setOnClickListener(new View.OnClickListener() {
+//           @Override
+//           public void onClick(View view) {
+//               startActivity(new Intent(ProfileActivity.this,askDriver.class));
+//           }
+//       });
+
+//        btn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(ProfileActivity.this,askHitchhiker.class));
+//            }
+//        });
+
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(ProfileActivity.this,askHitchhiker.class));
+                startActivity(new Intent(ProfileActivity.this,askDriver.class));
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        databaseList.addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list.clear();
+                for (DataSnapshot trempData : dataSnapshot.getChildren()){
+                    Tremp tremp = trempData.getValue(Tremp.class);
+                    list.add(tremp);
+                }
+                DrivesList adpter = new DrivesList(ProfileActivity.this,list,add);
+                listView.setAdapter(adpter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
     }

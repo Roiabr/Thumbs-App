@@ -6,16 +6,46 @@ public class Tremp {
     String Name;
     String TimeStart;
     String TimeEnd;
-    String Location;
+    String LocationStart;
+    String LocationEnd;
     String day;
 
-    public Tremp(String id1, String name, String timeStart, String timeEnd, String location, String day) {
+    public Tremp(){
+
+    }
+
+    public Tremp(String id1, String name, String timeStart, String timeEnd, String location,String End, String day) {
         id = id1;
         Name = name;
         TimeStart = timeStart;
         TimeEnd = timeEnd;
-        Location = location;
+        LocationStart = location;
+        LocationEnd= End;
         this.day = day;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getLocationStart() {
+        return LocationStart;
+    }
+
+    public void setLocationStart(String locationStart) {
+        LocationStart = locationStart;
+    }
+
+    public String getLocationEnd() {
+        return LocationEnd;
+    }
+
+    public void setLocationEnd(String locationEnd) {
+        LocationEnd = locationEnd;
     }
 
     public String getName() {
@@ -40,14 +70,6 @@ public class Tremp {
 
     public void setTimeEnd(String timeEnd) {
         TimeEnd = timeEnd;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public void setLocation(String location) {
-        Location = location;
     }
 
     public String getDay() {

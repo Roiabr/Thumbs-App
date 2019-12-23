@@ -3,15 +3,19 @@ package com.example.thumbs_app;
 public class Users {
 
     String id;
+    String Email;
     String Name;
     String Password;
     String phone;
     String car;
 
 
-    public Users(String id1, String name, String password1, String phone1, String car1) {
+    public Users(){}
+
+    public Users(String id1, String name, String email1, String password1, String phone1, String car1) {
         id = id1;
         Name = name;
+        Email = email1;
         Password = password1;
         phone = phone1;
         car = car1;
@@ -28,6 +32,13 @@ public class Users {
 
     public String getName() {
         return Name;
+    }
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        this.Email = email;
     }
 
     public void setName(String name) {

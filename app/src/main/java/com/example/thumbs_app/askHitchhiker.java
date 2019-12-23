@@ -135,12 +135,13 @@ public class askHitchhiker extends AppCompatActivity implements AdapterView.OnIt
         String Name = name.getText().toString().trim();
         String TimeStart = Time2.getText().toString().trim();
         String TimeEnd = Time.getText().toString().trim();
-        String Location = spinner.getSelectedItem().toString();
+        String LocationStart = spinner.getSelectedItem().toString();
+        String LoctionEnd = spinner3.getSelectedItem().toString();
         String day = spinner2.getSelectedItem().toString();
 
         if(!TextUtils.isEmpty(Name)){
             String id =  databaseReference.push().getKey();
-            Tremp hitchhiker = new Tremp(id,Name,TimeStart,TimeEnd,Location,day);
+            Tremp hitchhiker = new Tremp(id,Name,TimeStart,TimeEnd,LocationStart,LoctionEnd,day);
             databaseReference.child(id).setValue(hitchhiker);
             Toast.makeText(this, "Hitchhiker Added", Toast.LENGTH_SHORT).show();
         }

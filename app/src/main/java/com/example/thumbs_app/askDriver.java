@@ -138,12 +138,13 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         String Name = name.getText().toString().trim();
         String TimeStart = Time2.getText().toString().trim();
         String TimeEnd = Time.getText().toString().trim();
-        String Location = spinner.getSelectedItem().toString();
+        String LocationStart = spinner.getSelectedItem().toString();
+        String LocationEnd = spinner3.getSelectedItem().toString();
         String day = spinner2.getSelectedItem().toString();
 
         if(!TextUtils.isEmpty(Name)){
             String id =  databaseReference.push().getKey();
-            Tremp drive = new Tremp(id,Name,TimeStart,TimeEnd,Location,day);
+            Tremp drive = new Tremp(id,Name,TimeStart,TimeEnd,LocationStart,LocationEnd,day);
             databaseReference.child(id).setValue(drive);
             Toast.makeText(this, "Drive Added", Toast.LENGTH_SHORT).show();
         }
