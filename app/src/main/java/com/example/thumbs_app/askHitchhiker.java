@@ -22,6 +22,8 @@ import java.util.Calendar;
 
 public class askHitchhiker extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+
+    Tremp tremp;
     EditText name;
     EditText phone;
 

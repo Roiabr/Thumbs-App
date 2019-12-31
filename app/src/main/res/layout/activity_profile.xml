@@ -11,14 +11,15 @@
         android:layout_width ="match_parent"
         android:layout_height = "wrap_content">
 
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:layout_width ="match_parent"
-            android:layout_height = "wrap_content"
-            android:background ="#789"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#789"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:title="@string/app_name"
-            app:titleTextColor = "#fff"
-            app:layout_scrollFlags="scroll|enterAlways">
+            app:titleTextColor="#fff">
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.appcompat.widget.Toolbar
@@ -28,7 +29,9 @@
             android:background ="#789"
             app:titleTextColor = "#fff"
             app:layout_collapseMode="pin"
+
             >
+
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/TabLyaout"
@@ -36,18 +39,19 @@
                 android:layout_height ="wrap_content"
                 app:tabTextColor="#fff"
                 app:tabSelectedTextColor="#000">
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"
                     android:id="@+id/tabDriver"
-                    android:text="Driver">
+                    android:text="נהגים">
 
                 </com.google.android.material.tabs.TabItem>
                 <com.google.android.material.tabs.TabItem
                     android:layout_width ="wrap_content"
                     android:layout_height ="wrap_content"
                     android:id="@+id/tabTremp"
-                    android:text="Looking">
+                    android:text="טרמפיסטים">
 
                 </com.google.android.material.tabs.TabItem>
 
@@ -58,6 +62,15 @@
 
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+
+        />
 
 <!--    <Button-->
 <!--        android:id="@+id/suggBtn"-->
@@ -83,6 +96,15 @@
         android:layout_gravity="right|bottom"
         app:srcCompat="@drawable/ic_add_black_24dp"
         app:elevation="4dp" />
+
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:queryHint="Search Here"
+        android:iconifiedByDefault="false"
+
+        />
 
     <ListView
         android:id="@+id/listViewTremp"

@@ -1,13 +1,18 @@
 package com.example.thumbs_app;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Users {
 
-    String id;
-    String Email;
-    String Name;
-    String Password;
-    String phone;
-    String car;
+    private String id;
+    private String Email;
+    private String Name;
+    private String Password;
+    private String phone;
+    private String car;
+    private List<Tremp> myDrives;
+
 
 
     public Users(){}
@@ -19,6 +24,8 @@ public class Users {
         Password = password1;
         phone = phone1;
         car = car1;
+        myDrives = new ArrayList<>();
+
 
     }
 

@@ -4,8 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_profile_main">ProfileMain</string>
-    <string name="tab_text_1">נהג</string>
-    <string name="tab_text_2">נוסע</string>
+
 
     <string-array name="location">
         <item>פתח תקווה</item>
