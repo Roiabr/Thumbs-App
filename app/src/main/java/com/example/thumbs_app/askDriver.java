@@ -3,6 +3,7 @@ package com.example.thumbs_app;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,17 +17,22 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 
 
 public class askDriver extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-
-    EditText name;
-    EditText phone;
+    Tremp tremp;
+    TextView name;
+    TextView phone;
 
     Spinner spinner,spinner2,spinner3;
     TextView Time;
@@ -35,19 +41,42 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
     Calendar calendar = Calendar.getInstance();
     int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
     int currentMinute = calendar.get(Calendar.MINUTE);
-
     Button submit;
-
+    String nameDriver;
     DatabaseReference databaseReference;
+    DatabaseReference databaseReference2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask_driver);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Driver");
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        databaseReference2 = FirebaseDatabase.getInstance().getReference("Drives");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(currentFirebaseUser.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Users user = dataSnapshot.getValue(Users.class);
+                Log.d("me:",user.getName());
+                Log.d("me:",user.getPhone());
+                nameDriver =  user.getName();
+                String phoneDriver = user.getPhone();
+                name =  findViewById(R.id.editTextDriver);
+                name.setText(nameDriver);
+                phone = findViewById(R.id.phoneText);
+                phone.setText(phoneDriver);
 
-        name = findViewById(R.id.editTextDriver);
-        phone = findViewById(R.id.phoneText);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
+
+
         spinner = findViewById(R.id.spinnerLoc);
         spinner3 = findViewById(R.id.spinnerLoc2);
         spinner2 = findViewById(R.id.spinner2);
@@ -143,9 +172,14 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         String day = spinner2.getSelectedItem().toString();
 
         if(!TextUtils.isEmpty(Name)){
+
+            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
             String id =  databaseReference.push().getKey();
             Tremp drive = new Tremp(id,Name,TimeStart,TimeEnd,LocationStart,LocationEnd,day);
-            databaseReference.child(id).setValue(drive);
+
+            databaseReference.child("Drives").child(id).setValue(drive);
+            databaseReference2.child(id).setValue(drive);
             Toast.makeText(this, "Drive Added", Toast.LENGTH_SHORT).show();
         }
         else

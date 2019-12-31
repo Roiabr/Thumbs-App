@@ -38,8 +38,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
 
 
-
         databaseReference = FirebaseDatabase.getInstance().getReference("Users");
+
         editTextEmail = (EditText) findViewById(R.id.email);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextCar = (EditText) findViewById(R.id.editTextCar);
@@ -105,7 +105,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
-                    String id =  databaseReference.push().getKey();
+                    String id =  mAuth.getUid();
                     Users users = new Users(id,name,email,password,phone,car);
                     databaseReference.child(id).setValue(users);
                     finish();
