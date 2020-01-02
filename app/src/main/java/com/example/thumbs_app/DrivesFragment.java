@@ -13,10 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-<<<<<<< HEAD
 import android.widget.AdapterView;
-=======
->>>>>>> origin/master
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,11 +45,10 @@ public class DrivesFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-<<<<<<< HEAD
+
     public static final String DRIVENAME = "drivename";
     public static final String DRIVEID = "driveid";
-=======
->>>>>>> origin/master
+
     DatabaseReference databaseList;
     Toolbar toolbar,toolTab;
     TabLayout layout;
@@ -111,17 +107,12 @@ public class DrivesFragment extends Fragment {
         layout = (TabLayout) view.findViewById(R.id.TabLyaout);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
 
-<<<<<<< HEAD
-//       toolbar.inflateMenu(R.menu.main_menu);
-=======
-//        toolbar.inflateMenu(R.menu.main_menu);
->>>>>>> origin/master
 
         add = (FloatingActionButton) view.findViewById(R.id.floatingAdd);
 
         listView = (ListView) view.findViewById(R.id.listViewTremp);
 
-<<<<<<< HEAD
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -134,8 +125,7 @@ public class DrivesFragment extends Fragment {
             }
         });
 
-=======
->>>>>>> origin/master
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,8 +155,8 @@ public class DrivesFragment extends Fragment {
                     Tremp tremp = trempData.getValue(Tremp.class);
                     list.add(tremp);
                 }
-                final DrivesList adpter = new DrivesList(getActivity(),list);
-                listView.setAdapter(adpter);
+                //final DrivesList adpter = new DrivesList(getActivity(),list);
+                //listView.setAdapter(adpter);
 
             }
 
