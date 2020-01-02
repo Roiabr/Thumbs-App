@@ -59,6 +59,7 @@ public class DrivesFragment extends Fragment {
     FloatingActionButton add;
     PageAdapter pageAdapter;
     List<Tremp> list;
+    List<Tremp> listFilter;
 
 
     private OnFragmentInteractionListener mListener;
@@ -102,13 +103,14 @@ public class DrivesFragment extends Fragment {
         databaseList = FirebaseDatabase.getInstance().getReference("Drives");
 
         list = new ArrayList<>();
+        listFilter = new ArrayList<>();
         toolbar = (Toolbar) view.findViewById(R.id.toolbar);
         toolTab = (Toolbar) view.findViewById(R.id.toolTab);
         layout = (TabLayout) view.findViewById(R.id.TabLyaout);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         searchView = (SearchView) view.findViewById(R.id.search_view);
 
-//        toolbar.inflateMenu(R.menu.main_menu);
+
 
         add = (FloatingActionButton) view.findViewById(R.id.floatingAdd);
 
@@ -155,6 +157,30 @@ public class DrivesFragment extends Fragment {
                 }
                 final DrivesList adpter = new DrivesList(getActivity(),list);
                 listView.setAdapter(adpter);
+
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        listFilter.clear();
+                        for (Tremp trempData : list){
+
+                            if(trempData.getName().contains(newText))
+                            {
+                                listFilter.add(trempData);
+
+                            }
+                        }
+                        final DrivesList adpter2 = new DrivesList(getActivity(),listFilter);
+                        listView.setAdapter(adpter2);
+
+                        return false;
+                    }
+                });
 
             }
 

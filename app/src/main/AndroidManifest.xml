@@ -12,9 +12,11 @@
         <activity android:name=".getTheDriver"></activity>
         <activity android:name=".askHitchhiker" />
         <activity android:name=".askDriver" />
+        <activity android:name=".MyPrivateDrivers" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
