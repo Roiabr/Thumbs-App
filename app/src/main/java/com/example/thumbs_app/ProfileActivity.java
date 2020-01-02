@@ -8,11 +8,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+
 import android.widget.Toast;
+
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,13 +32,16 @@ import java.util.List;
 
 public class ProfileActivity extends AppCompatActivity {
 
+
     DatabaseReference databaseList;
     Toolbar toolbar,toolTab;
-    ViewPager viewPager;
     TabLayout layout;
+    ViewPager viewPager;
+
     ListView listView;
-    Button btn,btn1;
+
     FloatingActionButton add;
+    PageAdapter pageAdapter;
     List<Tremp> list;
 
     @Override
@@ -42,20 +49,27 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        databaseList = FirebaseDatabase.getInstance().getReference("Driver");
+        databaseList = FirebaseDatabase.getInstance().getReference("Drives");
 
         list = new ArrayList<>();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolTab = (Toolbar) findViewById(R.id.toolTab);
         layout = (TabLayout) findViewById(R.id.TabLyaout);
-        //btn = (Button) findViewById(R.id.suggBtn);
-        //btn1 = (Button) findViewById(R.id.askBtn);
+        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        layout.setupWithViewPager(viewPager);
+
+        pageAdapter = new PageAdapter(getSupportFragmentManager());
+        pageAdapter.addFragment(new DrivesFragment(),"נהגים");
+        pageAdapter.addFragment(new HichFragment(),"טרמפיסטים");
+        viewPager.setAdapter(pageAdapter);
         setSupportActionBar(toolbar);
         toolbar.inflateMenu(R.menu.main_menu);
 
         add = (FloatingActionButton) findViewById(R.id.floatingAdd);
 
         listView = (ListView) findViewById(R.id.listViewTremp);
+
+
 
 
 
@@ -94,8 +108,9 @@ public class ProfileActivity extends AppCompatActivity {
                     Tremp tremp = trempData.getValue(Tremp.class);
                     list.add(tremp);
                 }
-                DrivesList adpter = new DrivesList(ProfileActivity.this,list,add);
+                final DrivesList adpter = new DrivesList(ProfileActivity.this,list);
                 listView.setAdapter(adpter);
+
             }
 
             @Override
@@ -109,6 +124,7 @@ public class ProfileActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
         return true;
     }
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -119,6 +135,9 @@ public class ProfileActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+//            case R.id.MYDrives:
+//                startActivity(new Intent(ProfileActivity.this, MyPrivateDrivers.class));
+
                 break;
 
         }

@@ -10,11 +10,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -41,21 +44,18 @@ public class DrivesFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public  static final String DRIVEID = "driveid";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    public static final String DRIVENAME = "drivename";
-    public static final String DRIVEID = "driveid";
-
     DatabaseReference databaseList;
     Toolbar toolbar,toolTab;
     TabLayout layout;
     ViewPager viewPager;
 
     ListView listView;
-
+    SearchView searchView;
     FloatingActionButton add;
     PageAdapter pageAdapter;
     List<Tremp> list;
@@ -106,26 +106,24 @@ public class DrivesFragment extends Fragment {
         toolTab = (Toolbar) view.findViewById(R.id.toolTab);
         layout = (TabLayout) view.findViewById(R.id.TabLyaout);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
+        searchView = (SearchView) view.findViewById(R.id.search_view);
 
+//        toolbar.inflateMenu(R.menu.main_menu);
 
         add = (FloatingActionButton) view.findViewById(R.id.floatingAdd);
 
         listView = (ListView) view.findViewById(R.id.listViewTremp);
-
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Tremp tremp = list.get(i);
                 Intent intent = new Intent(getActivity(),getTheDriver.class);
-                intent.putExtra(DRIVENAME,tremp.getName());
                 intent.putExtra(DRIVEID,tremp.getId());
 
-                 startActivity(intent);
+                startActivity(intent);
             }
         });
-
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,8 +153,8 @@ public class DrivesFragment extends Fragment {
                     Tremp tremp = trempData.getValue(Tremp.class);
                     list.add(tremp);
                 }
-                //final DrivesList adpter = new DrivesList(getActivity(),list);
-                //listView.setAdapter(adpter);
+                final DrivesList adpter = new DrivesList(getActivity(),list);
+                listView.setAdapter(adpter);
 
             }
 

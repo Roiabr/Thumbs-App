@@ -38,8 +38,8 @@ public class getTheDriver extends AppCompatActivity {
                 Tremp tremp= dataSnapshot.getValue(Tremp.class);
                 String name = tremp.getName();
                 String phone = tremp.getLocationStart();
-                String id2;
-                textView.setText(phone);
+                Log.d("name;", name);
+                Log.d("name;", phone);
 
 
             }
