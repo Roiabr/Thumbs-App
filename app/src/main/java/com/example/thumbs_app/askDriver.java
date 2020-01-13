@@ -173,10 +173,15 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
 
         if(!TextUtils.isEmpty(Name)){
 
-            FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+            String userid=null;
+            try {
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                userid = currentFirebaseUser.getUid();
+            } finally {
 
+            }
             String id =  databaseReference.push().getKey();
-            Tremp drive = new Tremp(id,Name,TimeStart,TimeEnd,LocationStart,LocationEnd,day);
+            Tremp drive = new Tremp(id,userid,Name,TimeStart,TimeEnd,LocationStart,LocationEnd,day);
 
             databaseReference.child("Drives").child(id).setValue(drive);
             databaseReference2.child(id).setValue(drive);

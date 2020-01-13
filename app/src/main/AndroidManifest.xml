@@ -9,14 +9,14 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".getTheDriver"></activity>
+        <activity android:name=".OpenDialog"></activity>
+        <activity android:name=".getTheDriver" />
         <activity android:name=".askHitchhiker" />
         <activity android:name=".askDriver" />
         <activity android:name=".MyPrivateDrivers" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

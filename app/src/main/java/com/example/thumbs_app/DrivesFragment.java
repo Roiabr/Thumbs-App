@@ -109,7 +109,7 @@ public class DrivesFragment extends Fragment {
         layout = (TabLayout) view.findViewById(R.id.TabLyaout);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         searchView = (SearchView) view.findViewById(R.id.search_view);
-
+        String to = "a_unique_key"; // the notification key
 
 
         add = (FloatingActionButton) view.findViewById(R.id.floatingAdd);

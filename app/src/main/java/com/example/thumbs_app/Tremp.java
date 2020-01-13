@@ -1,8 +1,11 @@
 package com.example.thumbs_app;
 
+import android.util.Log;
+
 public class Tremp {
 
     String id;
+    String Createtremp;
     String Name;
     String TimeStart;
     String TimeEnd;
@@ -14,7 +17,8 @@ public class Tremp {
 
     }
 
-    public Tremp(String id1, String name, String timeStart, String timeEnd, String location,String locationEnd2, String day) {
+    public Tremp(String id1,String Cp, String name, String timeStart, String timeEnd, String location,String locationEnd2, String day) {
+        Createtremp=Cp;
         id = id1;
         Name = name;
         TimeStart = timeStart;
@@ -22,6 +26,15 @@ public class Tremp {
         LocationStart = location;
         LocationEnd = locationEnd2;
         this.day = day;
+    }
+
+    public String getcp() {
+        Log.d("ASd ","Asd"+Createtremp);
+
+        return Createtremp;
+    }
+    public void setcp(String name) {
+        Createtremp = name;
     }
 
     public String getName() {

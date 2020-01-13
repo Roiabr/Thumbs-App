@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -143,7 +145,17 @@ public class askHitchhiker extends AppCompatActivity implements AdapterView.OnIt
 
         if(!TextUtils.isEmpty(Name)){
             String id =  databaseReference.push().getKey();
-            Tremp hitchhiker = new Tremp(id,Name,TimeStart,TimeEnd,LocationStart,LoctionEnd,day);
+            String userid=null;
+            try {
+                FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                userid = currentFirebaseUser.getUid();
+            } finally {
+
+            }
+
+
+
+            Tremp hitchhiker = new Tremp(id,userid,Name,TimeStart,TimeEnd,LocationStart,LoctionEnd,day);
             databaseReference.child(id).setValue(hitchhiker);
             Toast.makeText(this, "Hitchhiker Added", Toast.LENGTH_SHORT).show();
         }

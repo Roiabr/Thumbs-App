@@ -138,6 +138,9 @@ public class ProfileActivity extends AppCompatActivity {
 
             case R.id.MYDrives:
                 startActivity(new Intent(ProfileActivity.this, MyPrivateDrivers.class));
+            case R.id.MYProfile:
+               // startActivity(new Intent(ProfileActivity.this, OpenDialog.class));//NEED TO CREATE NEW CLASS
+
 
 
 
