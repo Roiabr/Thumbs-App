@@ -32,7 +32,7 @@ public class askHitchhiker extends AppCompatActivity implements AdapterView.OnIt
     Spinner spinner,spinner2,spinner3;
     TextView Time;
     TextView Time2;
-
+    String phonenum;
     Calendar calendar = Calendar.getInstance();
     int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
     int currentMinute = calendar.get(Calendar.MINUTE);
@@ -155,7 +155,7 @@ public class askHitchhiker extends AppCompatActivity implements AdapterView.OnIt
 
 
 
-            Tremp hitchhiker = new Tremp(id,userid,Name,TimeStart,TimeEnd,LocationStart,LoctionEnd,day);
+            Tremp hitchhiker = new Tremp(id,userid,Name,TimeStart,TimeEnd,LocationStart,LoctionEnd,day,phonenum);
             databaseReference.child(id).setValue(hitchhiker);
             Toast.makeText(this, "Hitchhiker Added", Toast.LENGTH_SHORT).show();
         }

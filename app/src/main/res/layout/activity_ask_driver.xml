@@ -23,15 +23,15 @@
 
             <TextView
                 android:id="@+id/editTextDriver"
-                android:layout_width="292dp"
+                android:layout_width="328dp"
                 android:layout_height="66dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="18dp"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="my name"
                 android:gravity="center"
-                android:textSize="45dp" />
+                android:hint="my name"
+                android:textSize="30sp" />
 
 
 
@@ -60,7 +60,7 @@
                 android:gravity="center"
                 android:hint="phone"
                 android:inputType="phone"
-                android:textSize="45dp" />
+                android:textSize="30sp" />
 
             <ImageView
                 android:id="@+id/imageView6"

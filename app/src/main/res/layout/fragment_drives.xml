@@ -6,6 +6,34 @@
     android:layout_height="match_parent"
     tools:context=".DrivesFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <SearchView
+            android:id="@+id/search_view_to_from"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint=" מאיפה לנסוע ?"
+
+            >
+
+        </SearchView>
+
+        <SearchView
+            android:id="@+id/search_view_to_where"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:iconifiedByDefault="false"
+            android:queryHint="לאן לנסוע ? "
+
+            >
+
+        </SearchView>
+    </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingAdd"
         android:layout_width="wrap_content"
@@ -21,21 +49,11 @@
         />
 
 
-
-    <SearchView
-        android:id="@+id/search_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:queryHint="Search Here"
-        android:iconifiedByDefault="false"
-
-        />
-
     <ListView
         android:id="@+id/listViewTremp"
-        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp">
 
 
     </ListView>

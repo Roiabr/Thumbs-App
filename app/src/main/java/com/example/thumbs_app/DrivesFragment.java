@@ -1,6 +1,5 @@
 package com.example.thumbs_app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,14 +9,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -55,12 +52,12 @@ public class DrivesFragment extends Fragment {
     ViewPager viewPager;
 
     ListView listView;
-    SearchView searchView;
+    SearchView searchViewfrom ,searchViewwhere;
     FloatingActionButton add;
     PageAdapter pageAdapter;
     List<Tremp> list;
     List<Tremp> listFilter;
-
+    String SearchfilterFrom="",SearchfilerWhere="";
 
     private OnFragmentInteractionListener mListener;
 
@@ -108,7 +105,8 @@ public class DrivesFragment extends Fragment {
         toolTab = (Toolbar) view.findViewById(R.id.toolTab);
         layout = (TabLayout) view.findViewById(R.id.TabLyaout);
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
-        searchView = (SearchView) view.findViewById(R.id.search_view);
+        searchViewfrom = (SearchView) view.findViewById(R.id.search_view_to_from);
+        searchViewwhere =(SearchView) view.findViewById(R.id.search_view_to_where);
         String to = "a_unique_key"; // the notification key
 
 
@@ -158,7 +156,7 @@ public class DrivesFragment extends Fragment {
                 final DrivesList adpter = new DrivesList(getActivity(),list);
                 listView.setAdapter(adpter);
 
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                searchViewfrom.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                     @Override
                     public boolean onQueryTextSubmit(String query) {
                         return false;
@@ -166,22 +164,35 @@ public class DrivesFragment extends Fragment {
 
                     @Override
                     public boolean onQueryTextChange(String newText) {
-                        listFilter.clear();
-                        for (Tremp trempData : list){
-
-                            if(trempData.getName().contains(newText))
-                            {
-                                listFilter.add(trempData);
-
-                            }
-                        }
-                        final DrivesList adpter2 = new DrivesList(getActivity(),listFilter);
-                        listView.setAdapter(adpter2);
-
+//                        listFilter.clear();
+//                        for (Tremp trempData : list){
+//
+//                            if(trempData.getLocationEnd().contains(newText))
+//                            {
+//                                listFilter.add(trempData);
+//
+//                            }
+//                        }
+//                        final DrivesList adpter2 = new DrivesList(getActivity(),listFilter);
+//                        listView.setAdapter(adpter2);
+                        SearchfilterFrom=newText;
+                            update();
                         return false;
                     }
                 });
+                searchViewwhere.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        return false;
+                    }
 
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        SearchfilerWhere=newText;
+                        update();
+                        return false;
+                    }
+                });
             }
 
             @Override
@@ -190,17 +201,25 @@ public class DrivesFragment extends Fragment {
             }
         });
     }
+    public void update()
+    {
+        listFilter.clear();
+        for (Tremp trempData : list){
 
-//    @Override
-//    public void onAttach(Context context) {
-//        super.onAttach(context);
-//        if (context instanceof OnFragmentInteractionListener) {
-//            mListener = (OnFragmentInteractionListener) context;
-//        } else {
-//            throw new RuntimeException(context.toString()
-//                    + " must implement OnFragmentInteractionListener");
-//        }
-//    }
+            if(trempData.getLocationStart().contains(SearchfilterFrom) && trempData.getLocationEnd().contains(SearchfilerWhere))
+            {
+                listFilter.add(trempData);
+
+            }
+        }
+        final DrivesList adpter2 = new DrivesList(getActivity(),listFilter);
+        listView.setAdapter(adpter2);
+
+
+
+    }
+
+
 
     @Override
     public void onDetach() {

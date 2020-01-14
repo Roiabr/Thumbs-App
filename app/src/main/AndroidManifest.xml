@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".OpenDialog"></activity>
+        <activity android:name=".Dialog" />
+
+        <meta-data
+            android:name="com.google.android.gms.car.application"
+            android:resource="@xml/automotive_app_desc" />
+
         <activity android:name=".getTheDriver" />
         <activity android:name=".askHitchhiker" />
         <activity android:name=".askDriver" />

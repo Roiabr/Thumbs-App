@@ -12,12 +12,14 @@ public class Tremp {
     String LocationStart;
     String LocationEnd;
     String day;
+    String phoneDriver;
 
     public Tremp(){
 
     }
 
-    public Tremp(String id1,String Cp, String name, String timeStart, String timeEnd, String location,String locationEnd2, String day) {
+    public Tremp(String id1,String Cp, String name, String timeStart, String timeEnd, String location,String locationEnd2, String day,String phonenum) {
+        phoneDriver=phonenum;
         Createtremp=Cp;
         id = id1;
         Name = name;
@@ -40,7 +42,9 @@ public class Tremp {
     public String getName() {
         return Name;
     }
-
+    public String getPhoneDriver() {
+        return phoneDriver;
+    }
     public void setName(String name) {
         Name = name;
     }

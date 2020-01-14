@@ -42,7 +42,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
     int currentHour = calendar.get(Calendar.HOUR_OF_DAY);
     int currentMinute = calendar.get(Calendar.MINUTE);
     Button submit;
-    String nameDriver;
+    String nameDriver,phonenumber;
     DatabaseReference databaseReference;
     DatabaseReference databaseReference2;
     @Override
@@ -57,10 +57,12 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Users user = dataSnapshot.getValue(Users.class);
-                Log.d("me:",user.getName());
+                Log.d("me:",databaseReference.getKey());
+
                 Log.d("me:",user.getPhone());
                 nameDriver =  user.getName();
                 String phoneDriver = user.getPhone();
+                phonenumber=phoneDriver;
                 name =  findViewById(R.id.editTextDriver);
                 name.setText(nameDriver);
                 phone = findViewById(R.id.phoneText);
@@ -171,7 +173,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         String LocationEnd = spinner3.getSelectedItem().toString();
         String day = spinner2.getSelectedItem().toString();
 
-        if(!TextUtils.isEmpty(Name)){
+        if(!TextUtils.isEmpty(Name) &&!TextUtils.isEmpty(TimeEnd) &&!TextUtils.isEmpty(TimeStart)){
 
             String userid=null;
             try {
@@ -181,7 +183,7 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
 
             }
             String id =  databaseReference.push().getKey();
-            Tremp drive = new Tremp(id,userid,Name,TimeStart,TimeEnd,LocationStart,LocationEnd,day);
+            Tremp drive = new Tremp(id,userid,Name,TimeStart,TimeEnd,LocationStart,LocationEnd,day,phonenumber);
 
             databaseReference.child("Drives").child(id).setValue(drive);
             databaseReference2.child(id).setValue(drive);
