@@ -39,7 +39,6 @@ public class getTheDriver extends AppCompatActivity {
                 String name = tremp.getName();
                 String phone = tremp.getLocationStart();
                 Log.d("name;", name);
-                Log.d("name;", phone);
 
 
             }

@@ -77,7 +77,7 @@ public class OpenDialog extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Log.d("numeber",tr.getPhoneDriver());
+                Log.d("numebegr",tr.getPhoneDriver());
                 openWhatsApp(tr.phoneDriver);
             }
         });
