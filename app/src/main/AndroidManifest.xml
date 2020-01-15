@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.thumbs_app">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -9,8 +10,8 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".OpenDialog"></activity>
-        <activity android:name=".Dialog" />
+        <activity android:name=".What"></activity>
+        <activity android:name=".OpenDialog" />
 
         <meta-data
             android:name="com.google.android.gms.car.application"
@@ -21,6 +22,7 @@
         <activity android:name=".askDriver" />
         <activity android:name=".MyPrivateDrivers" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".MyProfile" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

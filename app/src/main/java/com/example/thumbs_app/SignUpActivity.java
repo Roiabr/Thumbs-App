@@ -97,6 +97,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             editTextPassword.requestFocus();
             return;
         }
+        if (phone.isEmpty()) {
+            mobilePhone.setError("phone is required");
+            mobilePhone.requestFocus();
+            return;
+        }
 
         progressBar.setVisibility(View.VISIBLE);
 

@@ -73,17 +73,21 @@ public class OpenDialog extends AppCompatActivity {
 
 
         final Button btn = (Button)g.findViewById(R.id.whatsup);
+
+
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                What phonecall= new What();
+                phonecall.number=tremp.phoneDriver;
+                Log.d("ssad",phonecall.number+"");
+                Intent sendIntent = new Intent(context,What.class);
+                context.startActivity(sendIntent);
 
-                Log.d("numebegr",tr.getPhoneDriver());
-                openWhatsApp(tr.phoneDriver);
+
             }
         });
-
-
-
 
         Button b=(Button)g.findViewById(R.id.dialog_invite);
         b.setOnClickListener(new View.OnClickListener() {
