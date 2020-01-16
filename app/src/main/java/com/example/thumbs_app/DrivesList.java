@@ -57,7 +57,7 @@ public class DrivesList extends ArrayAdapter implements Filterable {
             @Override
             public void onClick(View view) {
                 Tremp tremp = drivesList.get(position);
-                if(isFull == false){
+                if(true){
                     OpenDialog di= new OpenDialog(context,tremp);
                     di.gal(context,tremp);
                 }
