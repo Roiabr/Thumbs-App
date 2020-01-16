@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.textViewSignup).setOnClickListener(this);
         findViewById(R.id.buttonLogin).setOnClickListener(this);
-
+        String g=" ";
     }
 
     private void userLogin() {
