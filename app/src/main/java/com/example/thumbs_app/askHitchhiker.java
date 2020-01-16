@@ -143,7 +143,7 @@ public class askHitchhiker extends AppCompatActivity implements AdapterView.OnIt
         String LoctionEnd = spinner3.getSelectedItem().toString();
         String day = spinner2.getSelectedItem().toString();
 
-        if(!TextUtils.isEmpty(Name)){
+        if(!TimeStart.equals("משעה") && !TimeEnd.equals("עד שעה")){
             String id =  databaseReference.push().getKey();
             String userid=null;
             try {

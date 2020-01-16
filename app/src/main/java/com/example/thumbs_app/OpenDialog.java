@@ -89,7 +89,7 @@ public class OpenDialog extends AppCompatActivity {
             }
         });
 
-        Button b=(Button)g.findViewById(R.id.dialog_invite);
+        Button b = (Button)g.findViewById(R.id.dialog_invite);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

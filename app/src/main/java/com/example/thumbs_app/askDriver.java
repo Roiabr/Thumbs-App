@@ -173,8 +173,8 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
         String LocationEnd = spinner3.getSelectedItem().toString();
         String day = spinner2.getSelectedItem().toString();
 
-        if(!TextUtils.isEmpty(Name) &&!TextUtils.isEmpty(TimeEnd) &&!TextUtils.isEmpty(TimeStart)){
-
+        if(!TimeStart.equals("משעה") && !TimeEnd.equals("עד שעה")){
+            Log.d("SAd",TimeEnd+""+TimeStart);
             String userid=null;
             try {
                 FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -190,6 +190,6 @@ public class askDriver extends AppCompatActivity implements AdapterView.OnItemSe
             Toast.makeText(this, "Drive Added", Toast.LENGTH_SHORT).show();
         }
         else
-            Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please enter Times", Toast.LENGTH_SHORT).show();
     }
 }

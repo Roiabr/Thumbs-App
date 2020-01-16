@@ -1,11 +1,13 @@
 package com.example.thumbs_app;
 
-import android.os.Bundle;
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -13,7 +13,6 @@ public class Tremp {
     String LocationEnd;
     String day;
     String phoneDriver;
-
     public Tremp(){
 
     }
