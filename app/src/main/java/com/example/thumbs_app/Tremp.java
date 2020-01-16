@@ -13,6 +13,17 @@ public class Tremp {
     String LocationEnd;
     String day;
     String phoneDriver;
+    int CountofRriders;
+
+
+    public int getCountofRriders() {
+        return CountofRriders;
+    }
+
+    public void setCountofRriders() {
+        CountofRriders++;
+    }
+
     public Tremp(){
 
     }

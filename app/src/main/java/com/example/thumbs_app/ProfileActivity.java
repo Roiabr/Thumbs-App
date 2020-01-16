@@ -135,11 +135,16 @@ public class ProfileActivity extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 finish();
                 startActivity(new Intent(ProfileActivity.this, MainActivity.class));
+                break;
 
             case R.id.MYDrives:
                 startActivity(new Intent(ProfileActivity.this, MyPrivateDrivers.class));
+                break;
+
             case R.id.MYProfile:
                startActivity(new Intent(ProfileActivity.this, MyProfile.class));//NEED TO CREATE NEW CLASS
+                break;
+
 
 
 

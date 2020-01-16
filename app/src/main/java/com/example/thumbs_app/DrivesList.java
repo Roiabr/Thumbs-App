@@ -1,6 +1,7 @@
 package com.example.thumbs_app;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import java.util.List;
 public class DrivesList extends ArrayAdapter implements Filterable {
     private Activity context;
     private List<Tremp> drivesList;
+    static int callme;
 
 
     public DrivesList(Activity context, List<Tremp> drivesList) {
@@ -36,16 +38,19 @@ public class DrivesList extends ArrayAdapter implements Filterable {
 
         ImageView diverImage = (ImageView) lisView.findViewById(R.id.image);
         TextView From_Where = (TextView) lisView.findViewById(R.id.Fw);
-        TextView Daytv = (TextView) lisView.findViewById(R.id.Day);
-        TextView Timetv = (TextView) lisView.findViewById(R.id.Time);
+        TextView TimeStart = (TextView) lisView.findViewById(R.id.Time_Start);
+        TextView TimeEnd = (TextView) lisView.findViewById(R.id.Time_End);
+
+        TextView DayDrive = (TextView) lisView.findViewById(R.id.Day_Drive);
 
 
         //ImageView call = (ImageView) lisView.findViewById(R.id.imageCall);
 
         final Tremp tremp = drivesList.get(position);
 
-        Daytv.setText("ביום :" +tremp.getDay());
-        Timetv.setText("בשעה :" +tremp.getTimeStart());
+        DayDrive.setText("ביום :" +tremp.getDay());
+        TimeStart.setText("בשעה :" +tremp.getTimeStart());
+        TimeEnd.setText("עד שעה :" +tremp.getTimeEnd());
 
         From_Where.setText("מ: " + tremp.getLocationStart() +" ל: " + tremp.getLocationEnd() );
 
@@ -57,9 +62,11 @@ public class DrivesList extends ArrayAdapter implements Filterable {
             @Override
             public void onClick(View view) {
                 Tremp tremp = drivesList.get(position);
-                if(true){
-                    OpenDialog di= new OpenDialog(context,tremp);
-                    di.gal(context,tremp);
+                Log.d("check item",callme+"");
+                if(callme==0){
+
+                    OpenDialog dialog= new OpenDialog(context,tremp);
+                    dialog.gal(context,tremp);
                 }
                 else{
 

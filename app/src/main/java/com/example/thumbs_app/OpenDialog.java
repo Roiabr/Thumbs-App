@@ -15,6 +15,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,12 +24,15 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.net.URLEncoder;
 
 public class OpenDialog extends AppCompatActivity {
     private Activity context;
     Tremp tr;
+    TextView count;
     public OpenDialog(Activity co,Tremp t)
     {
     this.context=co;
@@ -55,33 +60,32 @@ public class OpenDialog extends AppCompatActivity {
         final Tremp tremp = tr;
 
 
-        TextView drivername =(TextView)g.findViewById(R.id.dialog_name);
-        TextView startPoint =(TextView)g.findViewById(R.id.dialog_start_point);
-        TextView destenaition =(TextView)g.findViewById(R.id.dialog_destenation);
-        TextView departuretime =(TextView)g.findViewById(R.id.dialog_departure);
-
+        final TextView drivername =(TextView)g.findViewById(R.id.TV_driver_name);
         drivername.setText(tremp.getName());
-        startPoint.setText(tremp.getLocationStart());
-        destenaition.setText(tremp.getLocationEnd());
-        departuretime.setText(tremp.getTimeStart());
 
-        FirebaseUser currentFirebaseUser2 = FirebaseAuth.getInstance().getCurrentUser();
-        //Log.d("showNotification", "showNotification: " + currentFirebaseUser.getUid());
-        //Log.d("showNotification", "showNotification: " + currentFirebaseUser2.getUid());
-        // DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Drives");
-        //databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(currentFirebaseUser.getUid());
+        TextView starttime =(TextView)g.findViewById(R.id.TV_Time_Start);
+        TextView endtime =(TextView)g.findViewById(R.id.TV_Time_End);
+        starttime.setText(tremp.getTimeStart());
+        endtime.setText(tremp.getTimeEnd());
+
+
+        TextView From_Where =(TextView)g.findViewById(R.id.TV_From_Where);
+        From_Where.setText(""+ tremp.getLocationStart() +" ל: " + tremp.getLocationEnd() );
+
+        TextView DAY =(TextView)g.findViewById(R.id.TV_DAY);
+        DAY.setText(tremp.getDay());
+
+
+        What.number=tremp.phoneDriver;
+
 
 
         final Button btn = (Button)g.findViewById(R.id.whatsup);
-
-
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                What phonecall= new What();
-                phonecall.number=tremp.phoneDriver;
-                Log.d("ssad",phonecall.number+"");
+                What.state=1;
+                Log.d("ssad",What.number+"");
                 Intent sendIntent = new Intent(context,What.class);
                 context.startActivity(sendIntent);
 
@@ -93,28 +97,43 @@ public class OpenDialog extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(tremp.getCountofRriders()<=4)
+                {
+                    tremp.setCountofRriders();
+                    Notifcaion_Tremp();
 
-                Notifcaion_Tremp();
+                }
 
             }
         });
 
+
+        Button dialbutton =(Button)g.findViewById(R.id.button_dial);
+        dialbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                What.state=2;
+                Intent th = new Intent(context,What.class);
+                context.startActivity(th);
+            }       });
+
+
+
+
+
     }
 
-    private void openWhatsApp(String smsNumber) {
-        Intent sendIntent = new Intent(Intent.ACTION_SEND);
-        sendIntent.setType("text/plain");
-        sendIntent.putExtra("jid", smsNumber + "@s.whatsapp.net"); //phone number without "+" prefix
-        sendIntent.setPackage("com.whatsapp");
 
-        startActivity(sendIntent);
-    }
+
     public void Notifcaion_Tremp()
     {
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         Intent intent = new Intent(context, MainActivity.class);
         int reqCode=1;
-        showNotification(context, "מישהו רוצה טרמפ",  currentFirebaseUser.getPhoneNumber()  +"רוצה לנסוע איתך" , intent, reqCode);
+        DatabaseReference databaseList = FirebaseDatabase.getInstance().getReference("Users").child(currentFirebaseUser.getUid());
+
+
+        showNotification(context, "מישהו רוצה טרמפ",  databaseList.getKey()  +"רוצה לנסוע איתך" , intent, reqCode);
     }
 
 
@@ -141,6 +160,5 @@ public class OpenDialog extends AppCompatActivity {
         }
         notificationManager.notify(reqCode, notificationBuilder.build()); // 0 is the request code, it should be unique id
 
-        Log.d("showNotification", "showNotification: " + reqCode);
     }
 }

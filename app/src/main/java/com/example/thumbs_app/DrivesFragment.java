@@ -62,6 +62,8 @@ public class DrivesFragment extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     public DrivesFragment() {
+        DrivesList.callme=0;
+
         // Required empty public constructor
     }
 
@@ -86,6 +88,8 @@ public class DrivesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DrivesList.callme=0;
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -109,6 +113,7 @@ public class DrivesFragment extends Fragment {
         searchViewwhere =(SearchView) view.findViewById(R.id.search_view_to_where);
         String to = "a_unique_key"; // the notification key
 
+        DrivesList.callme=0;
 
         add = (FloatingActionButton) view.findViewById(R.id.floatingAdd);
 
@@ -143,7 +148,9 @@ public class DrivesFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        DrivesList.callme=0;
         databaseList.addValueEventListener(new ValueEventListener() {
+
 
 
             @Override

@@ -32,6 +32,7 @@ public class MyPrivateDrivers extends AppCompatActivity {
         setContentView(R.layout.activity_my_private_drivers);
     //    toolbar = (Toolbar) findViewById(R.id.toolbar);
         list = new ArrayList<>();
+        DrivesList.callme=1;
 
         listView = (ListView) findViewById(R.id.List_private_Driver);
 
@@ -45,8 +46,6 @@ public class MyPrivateDrivers extends AppCompatActivity {
         super.onStart();
 
         databaseList.addValueEventListener(new ValueEventListener() {
-
-
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
