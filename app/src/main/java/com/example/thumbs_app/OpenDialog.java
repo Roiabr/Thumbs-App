@@ -41,13 +41,13 @@ public class OpenDialog extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_open_dialog);
+        setContentView(R.layout.activity_open_dialog2);
         super.onCreate(savedInstanceState);
     }
     public  void gal(Activity context,Tremp t)
     {
         Dialog builder = new Dialog(context);
-        builder.setContentView(R.layout.activity_open_dialog);
+        builder.setContentView(R.layout.activity_open_dialog2);
         builder.setTitle("Choose an animal");
         builder.setCancelable(true);
         install(builder);
@@ -58,8 +58,6 @@ public class OpenDialog extends AppCompatActivity {
     {
 
         final Tremp tremp = tr;
-
-
         final TextView drivername =(TextView)g.findViewById(R.id.TV_driver_name);
         drivername.setText(tremp.getName());
 
@@ -69,8 +67,10 @@ public class OpenDialog extends AppCompatActivity {
         endtime.setText(tremp.getTimeEnd());
 
 
-        TextView From_Where =(TextView)g.findViewById(R.id.TV_From_Where);
-        From_Where.setText(""+ tremp.getLocationStart() +" ל: " + tremp.getLocationEnd() );
+        TextView From =(TextView)g.findViewById(R.id.TV_From);
+        From.setText(tremp.getLocationStart());
+        TextView To =(TextView)g.findViewById(R.id.TV_To);
+        To.setText(tremp.getLocationEnd());
 
         TextView DAY =(TextView)g.findViewById(R.id.TV_DAY);
         DAY.setText(tremp.getDay());
@@ -133,7 +133,7 @@ public class OpenDialog extends AppCompatActivity {
         DatabaseReference databaseList = FirebaseDatabase.getInstance().getReference("Users").child(currentFirebaseUser.getUid());
 
 
-        showNotification(context, "מישהו רוצה טרמפ",  databaseList.getKey()  +"רוצה לנסוע איתך" , intent, reqCode);
+        showNotification(context, "הצטרפות לטרמפ","ביקשת להצטרף לטרמפ" , intent, reqCode);
     }
 
 

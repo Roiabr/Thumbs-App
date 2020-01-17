@@ -20,6 +20,7 @@
                 android:layout_height="150dp"
                 android:src="@drawable/usrusr"/>
             <TextView
+                android:id="@id/driverName"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
@@ -47,7 +48,7 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_email_black_24dp"/>
             <TextView
-                android:id="@+id/driverName"
+                android:id="@+id/email"
                 android:textStyle="bold"
                 android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
@@ -84,7 +85,9 @@
             <ImageView
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:src="@drawable/ic_directions_car_black_24dp"/>
+                android:src="@drawable/car">
+
+            </ImageView>
             <TextView
                 android:id="@+id/car"
                 android:textStyle="bold"

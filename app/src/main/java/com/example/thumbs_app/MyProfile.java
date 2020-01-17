@@ -21,6 +21,7 @@ public class MyProfile extends AppCompatActivity {
 
     Toolbar toolbar;
     TextView name;
+    TextView email;
     TextView phone;
     TextView car;
     DatabaseReference databaseList;
@@ -29,7 +30,9 @@ public class MyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
+
         name = (TextView) findViewById(R.id.driverName);
+        email = (TextView) findViewById(R.id.email);
         phone = (TextView) findViewById(R.id.phoneDriver);
         car = (TextView) findViewById(R.id.car);
 
@@ -42,10 +45,12 @@ public class MyProfile extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Users user= dataSnapshot.getValue(Users.class);
                 String name1 = user.getName();
+                String email1 = user.getEmail();
                 String phone1 = user.getPhone();
                 String car1 = user.getCar();
 
                 name.setText(name1);
+                email.setText(email1);
                 phone.setText(phone1);
                 car.setText(car1);
 
@@ -56,5 +61,7 @@ public class MyProfile extends AppCompatActivity {
 
             }
         });
+
+
     }
 }
